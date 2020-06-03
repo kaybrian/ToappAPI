@@ -22,3 +22,9 @@ def taskList(request):
     task = Task.objects.all()
     serialiser = TaskSerializer(task,many=True)
     return Response(serialiser.data)
+
+@api_view(['GET'])
+def taskDetail(request,pk):
+    task = Task.objects.get(id=pk)
+    serialiser = TaskSerializer(task,many=False)
+    return Response(serialiser.data)
